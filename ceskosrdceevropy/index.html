@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rozhovory - Česko srdce Evropy</title>
+    <title>Česko srdce Evropy - Příběhy, které formují Česko</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -24,6 +24,7 @@
             --cat-paragrafy: #8B6914;
             --cat-art: #9B2335;
             --cat-oceneni: #C8102E;
+            --cat-specialy: #6B4C9A;
         }
 
         body {
@@ -41,6 +42,7 @@
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; height: auto; display: block; }
 
+        /* TOP BAR */
         .top-bar {
             background: var(--blue);
             color: #ccc;
@@ -56,12 +58,14 @@
         .top-bar a:hover { color: #fff; }
         .top-bar .social-links svg { width: 16px; height: 16px; fill: currentColor; vertical-align: middle; }
 
+        /* CONTAINER */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
+        /* LOGO AREA */
         .logo-area {
             text-align: center;
             padding: 28px 0 20px;
@@ -95,6 +99,7 @@
             margin-top: 4px;
         }
 
+        /* NAVIGATION */
         .main-nav {
             background: var(--white);
             border-bottom: 2px solid var(--border);
@@ -110,6 +115,7 @@
         .nav-links {
             display: flex;
             list-style: none;
+            gap: 0;
         }
         .nav-links li a {
             display: block;
@@ -134,9 +140,13 @@
             transition: transform 0.25s ease;
         }
         .nav-links li a:hover,
-        .nav-links li a.active { color: var(--red); }
+        .nav-links li a.active {
+            color: var(--red);
+        }
         .nav-links li a:hover::after,
-        .nav-links li a.active::after { transform: scaleX(1); }
+        .nav-links li a.active::after {
+            transform: scaleX(1);
+        }
 
         .hamburger {
             display: none;
@@ -154,66 +164,6 @@
             transition: 0.3s;
         }
 
-        /* CATEGORY HERO */
-        .category-hero {
-            background: var(--cat-rozhovory);
-            color: #fff;
-            padding: 60px 0;
-            text-align: center;
-            margin-bottom: 0;
-        }
-        .category-hero h1 {
-            font-size: 2.8rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-        .category-hero p {
-            font-size: 1.1rem;
-            opacity: 0.85;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* FILTER BAR */
-        .filter-bar {
-            background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 0;
-        }
-        .filter-bar .container {
-            display: flex;
-            align-items: center;
-            gap: 0;
-        }
-        .filter-btn {
-            padding: 14px 24px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-light);
-            background: none;
-            border: none;
-            cursor: pointer;
-            position: relative;
-            transition: color 0.2s;
-            font-family: 'Source Sans 3', sans-serif;
-        }
-        .filter-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 12px;
-            right: 12px;
-            height: 3px;
-            background: var(--red);
-            transform: scaleX(0);
-            transition: transform 0.2s;
-        }
-        .filter-btn:hover,
-        .filter-btn.active { color: var(--red); }
-        .filter-btn:hover::after,
-        .filter-btn.active::after { transform: scaleX(1); }
-
         /* LAYOUT */
         .page-layout {
             display: grid;
@@ -222,6 +172,53 @@
             padding: 30px 0;
         }
 
+        /* FEATURED ARTICLE */
+        .featured-article {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            height: 520px;
+            cursor: pointer;
+        }
+        .featured-article img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .featured-article:hover img {
+            transform: scale(1.03);
+        }
+        .featured-article .content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 36px 36px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            color: #fff;
+        }
+        .featured-article h2 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            color: #fff;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .featured-article h2 a { color: #fff; }
+        .featured-article h2 a:hover { color: var(--red); }
+        .featured-article .excerpt {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+        .featured-article .meta { color: rgba(255,255,255,0.6); }
+        .featured-article .meta .author { color: rgba(255,255,255,0.8); }
+        .featured-article .meta .sep { color: rgba(255,255,255,0.3); }
+
+        /* CATEGORY BADGE */
         .badge {
             display: inline-block;
             font-size: 0.7rem;
@@ -239,7 +236,9 @@
         .badge-paragrafy { background: var(--cat-paragrafy); }
         .badge-art { background: var(--cat-art); }
         .badge-oceneni { background: var(--cat-oceneni); }
+        .badge-specialy { background: var(--cat-specialy); }
 
+        /* ARTICLE META */
         .meta {
             display: flex;
             align-items: center;
@@ -250,12 +249,11 @@
         .meta .author { font-weight: 600; color: var(--text); }
         .meta .sep { color: var(--border); }
 
-        /* 3-COLUMN GRID */
-        .article-grid-3 {
+        /* ARTICLE GRID */
+        .article-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 24px;
-            margin-bottom: 40px;
         }
         .article-card {
             background: var(--white);
@@ -270,67 +268,26 @@
         }
         .article-card img {
             width: 100%;
-            height: 180px;
+            height: 200px;
             object-fit: cover;
         }
         .article-card .content {
             padding: 16px 18px 20px;
         }
         .article-card h3 {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             margin-bottom: 8px;
             line-height: 1.35;
         }
         .article-card h3 a:hover { color: var(--red); }
         .article-card .excerpt {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             color: var(--text-light);
             margin-bottom: 10px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-        }
-
-        /* PAGINATION */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 6px;
-            margin: 10px 0 30px;
-        }
-        .pagination a,
-        .pagination span {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        .pagination a {
-            background: var(--white);
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-        .pagination a:hover {
-            border-color: var(--red);
-            color: var(--red);
-        }
-        .pagination .active {
-            background: var(--red);
-            color: #fff;
-            border: 1px solid var(--red);
-        }
-        .pagination .arrow {
-            width: auto;
-            padding: 0 14px;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
         }
 
         /* SIDEBAR */
@@ -356,32 +313,98 @@
             font-family: 'Source Sans 3', sans-serif;
             font-weight: 700;
         }
+
+        /* HOFO BOX */
         .hofo-box {
             background: var(--blue) !important;
             color: #fff;
         }
-        .hofo-box h4 { color: #fff; border-color: var(--red); }
-        .hofo-logo { font-family: 'Source Sans 3', sans-serif; font-size: 1.4rem; font-weight: 700; letter-spacing: 3px; margin-bottom: 4px; }
-        .hofo-subtitle { font-size: 0.8rem; color: #aac; margin-bottom: 16px; }
-        .hofo-video { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .hofo-box h4 {
+            color: #fff;
+            border-color: var(--red);
+        }
+        .hofo-logo {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 4px;
+        }
+        .hofo-subtitle {
+            font-size: 0.8rem;
+            color: #aac;
+            margin-bottom: 16px;
+        }
+        .hofo-video {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
         .hofo-video:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .hofo-video img { width: 80px; height: 50px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
-        .hofo-video .title { font-size: 0.85rem; line-height: 1.3; }
+        .hofo-video img {
+            width: 80px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        .hofo-video .title {
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
 
-        .most-read-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+        /* MOST READ */
+        .most-read-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
         .most-read-item:last-child { border: none; margin: 0; padding: 0; }
-        .most-read-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--red); line-height: 1; flex-shrink: 0; width: 30px; }
-        .most-read-item .title { font-size: 0.9rem; font-weight: 600; line-height: 1.35; }
+        .most-read-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+            flex-shrink: 0;
+            width: 30px;
+        }
+        .most-read-item .title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.35;
+        }
         .most-read-item .title:hover { color: var(--red); }
-        .most-read-item .cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-top: 3px; }
+        .most-read-item .cat {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-top: 3px;
+        }
 
+        /* NEWSLETTER */
         .newsletter-box {
             background: linear-gradient(135deg, var(--red), #a00d24) !important;
             color: #fff;
             text-align: center;
         }
-        .newsletter-box h4 { color: #fff; border-color: rgba(255,255,255,0.3); text-align: center; }
-        .newsletter-box p { font-size: 0.9rem; margin-bottom: 14px; opacity: 0.9; }
+        .newsletter-box h4 {
+            color: #fff;
+            border-color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+        .newsletter-box p {
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+            opacity: 0.9;
+        }
         .newsletter-box input[type="email"] {
             width: 100%;
             padding: 10px 14px;
@@ -407,7 +430,12 @@
         }
         .newsletter-box button:hover { background: #14304d; }
 
-        .social-follow { display: flex; gap: 8px; flex-wrap: wrap; }
+        /* SOCIAL FOLLOW */
+        .social-follow {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
         .social-btn {
             flex: 1;
             min-width: 60px;
@@ -425,7 +453,12 @@
         .social-btn.li { background: #0A66C2; }
         .social-btn.yt { background: #FF0000; }
 
-        .partners-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        /* PARTNERS */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
         .partner-logo {
             background: var(--bg);
             border-radius: 4px;
@@ -459,7 +492,10 @@
             letter-spacing: 1.5px;
             margin-bottom: 16px;
         }
-        .footer p, .footer li { font-size: 0.9rem; line-height: 1.8; }
+        .footer p, .footer li {
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
         .footer ul { list-style: none; }
         .footer a { color: #aaa; transition: color 0.2s; }
         .footer a:hover { color: #fff; }
@@ -472,6 +508,7 @@
             font-size: 0.8rem;
         }
 
+        /* COOKIE BANNER */
         .cookie-banner {
             position: fixed;
             bottom: 0;
@@ -500,12 +537,36 @@
             flex-shrink: 0;
         }
         .cookie-accept { background: var(--red); color: #fff; }
+        .cookie-accept:hover { background: #a00d24; }
         .cookie-settings { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3) !important; }
+        .cookie-settings:hover { border-color: #fff !important; }
 
-        @media (max-width: 1024px) {
-            .page-layout { grid-template-columns: 1fr; }
-            .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* SECTION HEADING */
+        .section-heading {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--red);
+            display: inline-block;
         }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .page-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+
         @media (max-width: 768px) {
             .logo { font-size: 1.5rem; letter-spacing: 1px; }
             .tagline { font-size: 0.75rem; }
@@ -524,14 +585,18 @@
             .nav-links li a { padding: 12px 20px; border-bottom: 1px solid var(--border); }
             .hamburger { display: block; }
             .main-nav .container { justify-content: space-between; }
-            .article-grid-3 { grid-template-columns: 1fr; }
-            .category-hero h1 { font-size: 1.8rem; }
-            .category-hero { padding: 36px 0; }
+            .article-grid { grid-template-columns: 1fr; }
+            .featured-article { height: 380px; }
+            .featured-article h2 { font-size: 1.5rem; }
+            .featured-article .content { padding: 24px 20px 20px; }
+            .featured-article .excerpt { font-size: 0.95rem; }
+            .featured-article h2 { font-size: 1.3rem; }
             .sidebar { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
             .cookie-banner { flex-direction: column; text-align: center; }
         }
+
         @media (max-width: 480px) {
             .top-bar .date { display: none; }
             .footer-grid { grid-template-columns: 1fr; }
@@ -555,7 +620,7 @@
 
     <!-- LOGO -->
     <div class="logo-area">
-        <a href="index.html" class="logo">ČESKÉ <span class="heart">&hearts;</span> SRDCE EVROPY</a>
+        <div class="logo">ČESKÉ <span class="heart">&hearts;</span> SRDCE EVROPY</div>
         <div class="tagline">Příběhy, které formují Česko</div>
     </div>
 
@@ -577,49 +642,95 @@
         </div>
     </nav>
 
-    <!-- CATEGORY HERO -->
-    <div class="category-hero">
-        <div class="container">
-            <h1>Rozhovory</h1>
-            <p>Hloubkové rozhovory s osobnostmi, které formují českou společnost, kulturu a vědu. Autentické příběhy lidí, na nichž záleží.</p>
-        </div>
-    </div>
-
-    <!-- FILTER BAR -->
-    <div class="filter-bar">
-        <div class="container">
-            <button class="filter-btn active">Nejnovější</button>
-            <button class="filter-btn">Nejčtenější</button>
-            <button class="filter-btn">Doporučené</button>
-        </div>
-    </div>
-
     <!-- MAIN CONTENT -->
     <div class="container">
         <div class="page-layout">
 
+            <!-- LEFT: CONTENT -->
             <main>
-                <div class="article-grid-3">
+                <!-- FEATURED -->
+                <article class="featured-article">
+                    <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop&q=80" alt="Martin Veselovský"></a>
+                    <div class="content">
+                        <span class="badge badge-rozhovory">Rozhovory</span>
+                        <h2><a href="clanek.html">Martin Veselovský: Novinařina je dnes důležitější než kdykoliv předtím</a></h2>
+                        <p class="excerpt">Rozhovor s jedním z nejznámějších českých novinářů o současném stavu médií, dezinformacích a o tom, proč je nezávislá žurnalistika pilířem demokracie. Veselovský mluví otevřeně o výzvách, kterým čelí moderní zpravodajství.</p>
+                        <div class="meta">
+                            <span class="author">Lucie Petrová</span>
+                            <span class="sep">|</span>
+                            <span>21. března 2026</span>
+                            <span class="sep">|</span>
+                            <span>8 min čtení</span>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="section-heading">Nejnovější články</div>
+
+                <!-- ARTICLE GRID -->
+                <div class="article-grid">
 
                     <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Martin Veselovský"></a>
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&h=450&fit=crop" alt="Stárnutí buněk"></a>
                         <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Martin Veselovský: Novinařina je dnes důležitější než kdykoliv předtím</a></h3>
-                            <p class="excerpt">Rozhovor s jedním z nejznámějších českých novinářů o stavu médií a dezinformacích.</p>
+                            <span class="badge badge-veda">Věda</span>
+                            <h3><a href="clanek.html">Čeští vědci přišli na způsob, jak zpomalit stárnutí buněk</a></h3>
+                            <p class="excerpt">Průlomový výzkum na Akademii věd ČR otevírá nové možnosti v boji proti degenerativním onemocněním a stárnutí.</p>
                             <div class="meta">
-                                <span class="author">Lucie Petrová</span>
+                                <span class="author">Dr. Pavel Novák</span>
                                 <span class="sep">|</span>
-                                <span>21. března 2026</span>
+                                <span>20. března 2026</span>
                             </div>
                         </div>
                     </article>
 
                     <article class="article-card">
-                        <a href="clanek-rozhovor-kirschner.html"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=450&fit=crop" alt="Jana Kirschner"></a>
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=450&fit=crop" alt="České startupy"></a>
+                        <div class="content">
+                            <span class="badge badge-tech">Tech</span>
+                            <h3><a href="clanek.html">České startupy dobývají Silicon Valley: Příběhy úspěchu</a></h3>
+                            <p class="excerpt">Kdo z Česka uspěl ve světě technologií a co stojí za jejich úspěchem? Mapujeme cesty českých podnikatelů.</p>
+                            <div class="meta">
+                                <span class="author">Tomáš Březina</span>
+                                <span class="sep">|</span>
+                                <span>19. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=800&h=450&fit=crop" alt="David Černý"></a>
+                        <div class="content">
+                            <span class="badge badge-art">Art</span>
+                            <h3><a href="clanek.html">David Černý odhaluje novou kontroverzní sochu v Praze</a></h3>
+                            <p class="excerpt">Umělec opět rozvířil debatu o hranicích umění ve veřejném prostoru svým nejnovějším dílem na Kampě.</p>
+                            <div class="meta">
+                                <span class="author">Klára Matoušová</span>
+                                <span class="sep">|</span>
+                                <span>18. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=450&fit=crop" alt="Stavební zákon"></a>
+                        <div class="content">
+                            <span class="badge badge-paragrafy">Paragrafy</span>
+                            <h3><a href="clanek.html">Nový stavební zákon: Co se mění pro developery i občany</a></h3>
+                            <p class="excerpt">Přehled klíčových změn v legislativě, které ovlivní výstavbu v Česku na příští desetiletí.</p>
+                            <div class="meta">
+                                <span class="author">JUDr. Martin Kolář</span>
+                                <span class="sep">|</span>
+                                <span>17. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=450&fit=crop" alt="Jana Kirschner"></a>
                         <div class="content">
                             <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek-rozhovor-kirschner.html">Jana Kirschner: Hudba nezná hranice, ale srdce má slovenské i české</a></h3>
+                            <h3><a href="clanek.html">Jana Kirschner: Hudba nezná hranice, ale srdce má slovenské i české</a></h3>
                             <p class="excerpt">Zpěvačka o své kariéře, propojení kultur a nové desce inspirované středoevropskou melancholií.</p>
                             <div class="meta">
                                 <span class="author">Eva Dvořáková</span>
@@ -630,118 +741,96 @@
                     </article>
 
                     <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Tomáš Halík"></a>
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=800&h=450&fit=crop" alt="ELI Beamlines"></a>
                         <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Tomáš Halík: Česko potřebuje víc pokory a méně cynismu</a></h3>
-                            <p class="excerpt">Filosof a kněz o hodnotách české společnosti, duchovním rozměru a dialogu mezi kulturami.</p>
+                            <span class="badge badge-veda">Věda</span>
+                            <h3><a href="clanek.html">Laserové centrum ELI v Dolních Břežanech mění světovou fyziku</a></h3>
+                            <p class="excerpt">Jak české lasery posouvají hranice vědy a přitahují špičkové vědce z celého světa.</p>
                             <div class="meta">
-                                <span class="author">Lucie Petrová</span>
+                                <span class="author">Dr. Pavel Novák</span>
+                                <span class="sep">|</span>
+                                <span>15. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=450&fit=crop" alt="AI v průmyslu"></a>
+                        <div class="content">
+                            <span class="badge badge-tech">Tech</span>
+                            <h3><a href="clanek.html">Umělá inteligence v českém průmyslu: Revoluce, nebo evoluce?</a></h3>
+                            <p class="excerpt">Jak české firmy implementují AI do výrobních procesů a co to znamená pro zaměstnanost.</p>
+                            <div class="meta">
+                                <span class="author">Tomáš Březina</span>
+                                <span class="sep">|</span>
+                                <span>14. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=450&fit=crop" alt="GDPR"></a>
+                        <div class="content">
+                            <span class="badge badge-paragrafy">Paragrafy</span>
+                            <h3><a href="clanek.html">GDPR po 8 letech: Jak Česko chrání osobní údaje</a></h3>
+                            <p class="excerpt">Analýza dopadu evropské regulace na české firmy, instituce i běžné občany.</p>
+                            <div class="meta">
+                                <span class="author">JUDr. Martin Kolář</span>
+                                <span class="sep">|</span>
+                                <span>13. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=800&h=450&fit=crop" alt="Český film"></a>
+                        <div class="content">
+                            <span class="badge badge-art">Art</span>
+                            <h3><a href="clanek.html">Český film na Oscaru: Proč se nám tentokrát podařilo</a></h3>
+                            <p class="excerpt">Cesta českého snímku na červený koberec a co to znamená pro domácí kinematografii.</p>
+                            <div class="meta">
+                                <span class="author">Klára Matoušová</span>
+                                <span class="sep">|</span>
+                                <span>12. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=450&fit=crop" alt="Česká hlava"></a>
+                        <div class="content">
+                            <span class="badge badge-oceneni">Ocenění</span>
+                            <h3><a href="clanek.html">Česká hlava 2026: Ocenění pro špičkové české vědce</a></h3>
+                            <p class="excerpt">Přehled letošních laureátů prestižního vědeckého ocenění a jejich přínosu pro společnost.</p>
+                            <div class="meta">
+                                <span class="author">Redakce</span>
+                                <span class="sep">|</span>
+                                <span>11. března 2026</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="article-card">
+                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=800&h=450&fit=crop" alt="Top 30 pod 30"></a>
+                        <div class="content">
+                            <span class="badge badge-oceneni">Ocenění</span>
+                            <h3><a href="clanek.html">Top 30 pod 30: Mladí Češi, kteří mění svět</a></h3>
+                            <p class="excerpt">Výběr nejtalentovanějších osobností pod třicet let, které Česko proslavují v zahraničí.</p>
+                            <div class="meta">
+                                <span class="author">Redakce</span>
                                 <span class="sep">|</span>
                                 <span>10. března 2026</span>
                             </div>
                         </div>
                     </article>
 
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Zdeněk Svěrák"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Zdeněk Svěrák: Smích je nejlepší lék na dobu, ve které žijeme</a></h3>
-                            <p class="excerpt">Legenda české kultury o humoru, psaní a svém pohledu na současné Česko.</p>
-                            <div class="meta">
-                                <span class="author">Eva Dvořáková</span>
-                                <span class="sep">|</span>
-                                <span>5. března 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=450&fit=crop" alt="Tereza Maxová"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Tereza Maxová: Charita není módní trend, je to zodpovědnost</a></h3>
-                            <p class="excerpt">Modelka a filantropka o své nadaci, pomoci dětem a co ji motivuje po třiceti letech kariéry.</p>
-                            <div class="meta">
-                                <span class="author">Lucie Petrová</span>
-                                <span class="sep">|</span>
-                                <span>28. února 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Daniel Hůlka"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Daniel Hůlka: Na jevišti zapomínám na všechno ostatní</a></h3>
-                            <p class="excerpt">Zpěvák a herec o životě na scéně, české muzikálové tradici a nových projektech.</p>
-                            <div class="meta">
-                                <span class="author">Eva Dvořáková</span>
-                                <span class="sep">|</span>
-                                <span>22. února 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Jiří Drahoš"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Jiří Drahoš: Věda a politika se musí naučit spolupracovat</a></h3>
-                            <p class="excerpt">Senátor a bývalý šéf Akademie věd o vztahu vědy a politického rozhodování.</p>
-                            <div class="meta">
-                                <span class="author">Lucie Petrová</span>
-                                <span class="sep">|</span>
-                                <span>15. února 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=450&fit=crop" alt="Aneta Langerová"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Aneta Langerová: Hudba je můj způsob, jak mluvit o věcech, na které nemám slova</a></h3>
-                            <p class="excerpt">Zpěvačka o tvůrčím procesu, inspiraci přírodou a novém albu.</p>
-                            <div class="meta">
-                                <span class="author">Eva Dvořáková</span>
-                                <span class="sep">|</span>
-                                <span>8. února 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="article-card">
-                        <a href="clanek.html"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop" alt="Jan Svěrák"></a>
-                        <div class="content">
-                            <span class="badge badge-rozhovory">Rozhovory</span>
-                            <h3><a href="clanek.html">Jan Svěrák: Český film má budoucnost, ale musí být odvážnější</a></h3>
-                            <p class="excerpt">Oscarový režisér o stavu české kinematografie a potřebě riskovat.</p>
-                            <div class="meta">
-                                <span class="author">Lucie Petrová</span>
-                                <span class="sep">|</span>
-                                <span>1. února 2026</span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-
-                <!-- PAGINATION -->
-                <div class="pagination">
-                    <a href="#" class="arrow">&laquo; Předchozí</a>
-                    <span class="active">1</span>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#" class="arrow">Další &raquo;</a>
                 </div>
             </main>
 
-            <!-- SIDEBAR -->
+            <!-- RIGHT: SIDEBAR -->
             <aside class="sidebar">
+
+                <!-- HOFO -->
                 <div class="sidebar-box hofo-box">
                     <div class="hofo-logo">HOFO</div>
                     <div class="hofo-subtitle">Studiové projekty</div>
@@ -759,39 +848,42 @@
                     </div>
                 </div>
 
+                <!-- MOST READ -->
                 <div class="sidebar-box">
                     <h4>Nejčtenější</h4>
                     <div class="most-read-item">
                         <div class="most-read-num">1</div>
-                        <div><a href="clanek-tech-startupy.html" class="title">České startupy dobývají Silicon Valley</a><div class="cat">Tech</div></div>
+                        <div><a href="clanek.html" class="title">České startupy dobývají Silicon Valley</a><div class="cat">Tech</div></div>
                     </div>
                     <div class="most-read-item">
                         <div class="most-read-num">2</div>
-                        <div><a href="clanek-art-cerny.html" class="title">David Černý odhaluje novou sochu</a><div class="cat">Art</div></div>
+                        <div><a href="clanek.html" class="title">David Černý odhaluje novou sochu</a><div class="cat">Art</div></div>
                     </div>
                     <div class="most-read-item">
                         <div class="most-read-num">3</div>
-                        <div><a href="clanek-oceneni-top30.html" class="title">Top 30 pod 30: Mladí Češi mění svět</a><div class="cat">Ocenění</div></div>
+                        <div><a href="clanek.html" class="title">Top 30 pod 30: Mladí Češi mění svět</a><div class="cat">Ocenění</div></div>
                     </div>
                     <div class="most-read-item">
                         <div class="most-read-num">4</div>
-                        <div><a href="clanek-tech-ai.html" class="title">AI v českém průmyslu: Revoluce?</a><div class="cat">Tech</div></div>
+                        <div><a href="clanek.html" class="title">AI v českém průmyslu: Revoluce?</a><div class="cat">Tech</div></div>
                     </div>
                     <div class="most-read-item">
                         <div class="most-read-num">5</div>
-                        <div><a href="clanek-veda-bunky.html" class="title">Zpomalení stárnutí buněk</a><div class="cat">Věda</div></div>
+                        <div><a href="clanek.html" class="title">Zpomalení stárnutí buněk</a><div class="cat">Věda</div></div>
                     </div>
                 </div>
 
+                <!-- NEWSLETTER -->
                 <div class="sidebar-box newsletter-box">
                     <h4>Newsletter</h4>
-                    <p>Každý týden výběr toho nejlepšího přímo do vaší schránky.</p>
+                    <p>Každý týden výběr toho nejlepšího z Česko srdce Evropy přímo do vaší schránky.</p>
                     <form onsubmit="event.preventDefault(); alert('Děkujeme za přihlášení!');">
                         <input type="email" placeholder="Váš e-mail" required>
                         <button type="submit">ODEBÍRAT</button>
                     </form>
                 </div>
 
+                <!-- SOCIAL -->
                 <div class="sidebar-box">
                     <h4>Sledujte nás</h4>
                     <div class="social-follow">
@@ -802,6 +894,7 @@
                     </div>
                 </div>
 
+                <!-- PARTNERS -->
                 <div class="sidebar-box">
                     <h4>Partneři</h4>
                     <div class="partners-grid">
@@ -811,6 +904,7 @@
                         <div class="partner-logo">Partner 4</div>
                     </div>
                 </div>
+
             </aside>
         </div>
     </div>
@@ -821,7 +915,7 @@
             <div class="footer-grid">
                 <div>
                     <h5>O nás</h5>
-                    <p>Česko srdce Evropy je nezávislý magazín přinášející příběhy o české vědě, technologiích, kultuře a společnosti.</p>
+                    <p>Česko srdce Evropy je nezávislý magazín přinášející příběhy o české vědě, technologiích, kultuře a společnosti. Věříme, že Česko má světu co nabídnout.</p>
                 </div>
                 <div>
                     <h5>Sekce</h5>
@@ -837,11 +931,11 @@
                 <div>
                     <h5>Kontakt</h5>
                     <p>
-                        Media Populus<br>
-                        IČ: 64908763<br>DIČ: CZ6952172689<br><br>
-                        Odpovědná osoba: Lenka Žáčková<br>
-                        <a href="mailto:redakce@ceskesrdceevropy.cz">redakce@ceskesrdceevropy.cz</a>
-                        
+                        redakce@ceskesrdceevropy.cz<br>
+                        +420 123 456 789<br><br>
+                        Česko srdce Evropy s.r.o.<br>
+                        Vinohradská 25<br>
+                        120 00 Praha 2
                     </p>
                 </div>
                 <div>
@@ -864,21 +958,12 @@
 
     <!-- COOKIE BANNER -->
     <div class="cookie-banner" id="cookieBanner">
-        <span>Tento web používá cookies pro zlepšení uživatelského zážitku a analýzu návštěvnosti.</span>
+        <span>Tento web používá cookies pro zlepšení uživatelského zážitku a analýzu návštěvnosti. Pokračováním souhlasíte s jejich použitím.</span>
         <div style="display:flex;gap:8px;flex-shrink:0;">
             <button class="cookie-settings" onclick="alert('Nastavení cookies')">Nastavení</button>
             <button class="cookie-accept" onclick="document.getElementById('cookieBanner').classList.add('hidden')">Přijmout vše</button>
         </div>
     </div>
-
-    <script>
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-    </script>
 
 </body>
 </html>
