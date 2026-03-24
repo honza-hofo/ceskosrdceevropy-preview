@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="cz" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C8102E"/>
+      <stop offset="50%" stop-color="#1B3A5C"/>
+      <stop offset="100%" stop-color="#C8102E"/>
+    </linearGradient>
+  </defs>
+  <path d="M50 88 C25 65 5 50 5 30 C5 15 17 5 32 5 C40 5 47 10 50 16 C53 10 60 5 68 5 C83 5 95 15 95 30 C95 50 75 65 50 88Z" fill="url(#cz)"/>
+  <text x="50" y="58" text-anchor="middle" font-family="serif" font-weight="bold" font-size="28" fill="white">Č</text>
+</svg>
