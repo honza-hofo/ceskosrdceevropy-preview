@@ -1,0 +1,33 @@
+<%- include('layout', { admin, page: 'settings' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/settings">Nastavení</a> <span>»</span> Obecné
+</div>
+
+<% if (typeof saved !== 'undefined' && saved) { %>
+  <div class="msg-success">Nastavení bylo uloženo.</div>
+<% } %>
+
+<form method="post" action="/admin/settings" class="admin-form">
+
+  <div class="form-group">
+    <label>Kontaktní email:</label>
+    <input type="email" name="contact_email" value="<%= settings.contact_email || '' %>">
+  </div>
+
+  <div class="form-group">
+    <label>SEO název:</label>
+    <input type="text" name="seo_title" value="<%= settings.seo_title || '' %>">
+  </div>
+
+  <div class="form-group">
+    <label>SEO popis:</label>
+    <input type="text" name="seo_description" value="<%= settings.seo_description || '' %>" style="width:100%">
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-green">Uložit</button>
+  </div>
+</form>
+
+<%- include('footer') %>

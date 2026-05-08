@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrace - Česko srdce Evropy</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/admin/static/style.css">
+</head>
+<body>
+  <div class="admin-topbar">
+    <div class="logo">☐ Administrace</div>
+    <div class="info">
+      <span>🔒 přihlášen <strong><%= admin %></strong></span>
+      <a href="/admin/logout">⏻ Odhlásit</a>
+      <a href="/" target="_blank">🌐 Web</a>
+    </div>
+  </div>
+  <nav class="admin-nav">
+    <a href="/admin/settings" class="<%= typeof page !== 'undefined' && page === 'settings' ? 'active' : '' %>">⚙ Nastavení</a>
+    <a href="/admin/articles" class="<%= typeof page !== 'undefined' && page === 'articles' ? 'active' : '' %>">📝 Články</a>
+    <a href="/admin/polls" class="<%= typeof page !== 'undefined' && page === 'polls' ? 'active' : '' %>">❓ Ankety</a>
+    <a href="/admin/top-articles" class="<%= typeof page !== 'undefined' && page === 'top' ? 'active' : '' %>">📊 Nejčtenější</a>
+    <a href="/admin/banner" class="<%= typeof page !== 'undefined' && page === 'banner' ? 'active' : '' %>">📢 Banner</a>
+    <a href="/admin/partners" class="<%= typeof page !== 'undefined' && page === 'partners' ? 'active' : '' %>">🤝 Partneri</a>
+    <a href="/admin/users" class="<%= typeof page !== 'undefined' && page === 'users' ? 'active' : '' %>">👤 Admini</a>
+  </nav>
+  <div class="admin-content">

@@ -1,0 +1,42 @@
+<%- include('layout', { admin, page: 'polls' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/polls">Ankety</a> <span>»</span> Přehled
+</div>
+
+<div class="filter-bar">
+  <a href="/admin/polls/new" class="btn btn-green btn-sm">+ Nová anketa</a>
+  <div></div>
+</div>
+
+<table class="admin-table">
+  <tr>
+    <th style="width:80px">Aktivní</th>
+    <th style="width:50px">ID</th>
+    <th>Otázka</th>
+    <th style="width:160px">Akce</th>
+  </tr>
+  <% if (polls.length === 0) { %>
+    <tr><td colspan="4" style="text-align:center;padding:24px;color:#888;">Žádné ankety</td></tr>
+  <% } %>
+  <% polls.forEach(p => { %>
+  <tr>
+    <td style="text-align:center">
+      <form method="post" action="/admin/polls/<%= p.id %>/activate" style="display:inline">
+        <input type="radio" name="active" <%= p.is_active ? 'checked' : '' %> onchange="this.form.submit()" style="cursor:pointer;width:18px;height:18px">
+      </form>
+    </td>
+    <td><%= p.id %></td>
+    <td><%= p.question %></td>
+    <td>
+      <a href="/admin/polls/<%= p.id %>" class="action-link action-edit">Upravit</a>
+      <span class="action-sep">|</span>
+      <form method="post" action="/admin/polls/<%= p.id %>/delete" style="display:inline" onsubmit="return confirm('Opravdu smazat?')">
+        <button type="submit" class="action-link action-delete" style="background:none;border:none;cursor:pointer;font:inherit">Smazat</button>
+      </form>
+    </td>
+  </tr>
+  <% }) %>
+</table>
+
+<%- include('footer') %>

@@ -1,0 +1,56 @@
+<%- include('layout', { admin, page: 'polls' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/polls">Ankety</a> <span>»</span> <%= poll ? 'Upravit' : 'Nová anketa' %>
+</div>
+
+<form method="post" action="/admin/polls<%= poll ? '/' + poll.id : '' %>" class="admin-form">
+
+  <div class="form-group">
+    <label>Otázka:</label>
+    <input type="text" name="question" value="<%= poll ? poll.question : '' %>" required>
+  </div>
+
+  <div class="form-group">
+    <label>Odpovědi:</label>
+    <div id="options-container">
+      <% if (options && options.length > 0) { %>
+        <% options.forEach(o => { %>
+          <div class="option-row">
+            <input type="text" name="options" value="<%= o.option_text %>" placeholder="Odpověď...">
+            <button type="button" class="remove-option" onclick="this.parentElement.remove()">✕</button>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="option-row">
+          <input type="text" name="options" placeholder="Odpověď 1...">
+          <button type="button" class="remove-option" onclick="this.parentElement.remove()">✕</button>
+        </div>
+        <div class="option-row">
+          <input type="text" name="options" placeholder="Odpověď 2...">
+          <button type="button" class="remove-option" onclick="this.parentElement.remove()">✕</button>
+        </div>
+      <% } %>
+    </div>
+    <button type="button" class="btn btn-gray btn-sm" onclick="addOption()" style="margin-top:8px">+ Přidat odpověď</button>
+  </div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-green">Uložit</button>
+    <a href="/admin/polls" class="btn btn-gray">Zrušit</a>
+  </div>
+</form>
+
+<script>
+function addOption() {
+  const container = document.getElementById('options-container');
+  const row = document.createElement('div');
+  row.className = 'option-row';
+  row.innerHTML = '<input type="text" name="options" placeholder="Odpověď...">' +
+    '<button type="button" class="remove-option" onclick="this.parentElement.remove()">✕</button>';
+  container.appendChild(row);
+  row.querySelector('input').focus();
+}
+</script>
+
+<%- include('footer') %>

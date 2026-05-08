@@ -1,0 +1,37 @@
+<aside class="sidebar">
+    <% if (typeof banner !== 'undefined' && banner) { %>
+    <div class="sidebar-box hofo-box">
+        <a href="<%= banner.link_url || '#' %>" target="_blank" style="text-decoration:none;">
+            <div class="hofo-logo"><%= banner.title %></div>
+            <div class="hofo-subtitle"><%= banner.subtitle %></div>
+        </a>
+        <% if (typeof bannerItems !== 'undefined' && bannerItems.length) { %>
+            <% bannerItems.forEach(item => { %>
+                <a href="<%= item.link_url || '#' %>" <% if (item.link_url) { %>target="_blank"<% } %> style="text-decoration:none;color:inherit;">
+                    <div class="hofo-video"><img src="<%= item.image_url %>" alt="<%= item.title %>"><div class="title"><%= item.title %></div></div>
+                </a>
+            <% }) %>
+        <% } %>
+    </div>
+    <% } %>
+    <div class="sidebar-box">
+        <h4>Nejčtenější</h4>
+        <% if (typeof topArticles !== 'undefined' && topArticles.length) { %>
+            <% topArticles.slice(0,5).forEach((a, i) => { %>
+            <div class="most-read-item">
+                <div class="most-read-num"><%= i+1 %></div>
+                <div><a href="/clanek/<%= a.slug %>" class="title"><%= a.title %></a><div class="cat"><%= a.category %></div></div>
+            </div>
+            <% }) %>
+        <% } %>
+    </div>
+    <div class="sidebar-box">
+        <h4>Sledujte nás</h4>
+        <div class="social-follow">
+            <a href="#" class="social-btn fb">FB</a>
+            <a href="#" class="social-btn ig">IG</a>
+            <a href="#" class="social-btn li">IN</a>
+            <a href="#" class="social-btn yt">YT</a>
+        </div>
+    </div>
+</aside>

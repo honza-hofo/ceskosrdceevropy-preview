@@ -1,0 +1,31 @@
+<%- include('layout', { admin, page: 'top' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/top-articles">Nejčtenější</a> <span>&raquo;</span> Výběr článků do sidebaru
+</div>
+
+<% if (typeof saved !== 'undefined' && saved) { %>
+  <div class="msg-success">Nejčtenější uloženy.</div>
+<% } %>
+
+<form method="post" action="/admin/top-articles" class="admin-form">
+  <p style="color:#666;margin-bottom:16px;">Vyber až 5 článků které se zobrazí v sidebaru jako "Nejčtenější". Pořadí odpovídá pořadí zde.</p>
+
+  <% for (let i = 0; i < 5; i++) { %>
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:8px;">
+      <span style="font-weight:bold;color:#888;width:24px;"><%= i + 1 %>.</span>
+      <select name="article_id" style="flex:1;">
+        <option value="">-- žádný --</option>
+        <% allArticles.forEach(a => { %>
+          <option value="<%= a.id %>" <%= (topIds[i] && topIds[i] == a.id) ? 'selected' : '' %>><%= a.title %> (<%= a.category %>)</option>
+        <% }) %>
+      </select>
+    </div>
+  <% } %>
+
+  <div class="form-actions" style="margin-top:16px;">
+    <button type="submit" class="btn btn-green">Uložit</button>
+  </div>
+</form>
+
+<%- include('footer') %>

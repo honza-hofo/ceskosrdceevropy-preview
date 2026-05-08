@@ -1,0 +1,58 @@
+<%- include('layout', { admin, page: 'users' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/users">Admini</a> <span>»</span> Správa uživatelů
+</div>
+
+<% if (error) { %>
+  <div class="login-error"><%= error %></div>
+<% } %>
+
+<table class="admin-table" style="margin-bottom:28px">
+  <tr>
+    <th>ID</th>
+    <th>Uživatelské jméno</th>
+    <th>Zobrazované jméno</th>
+    <th>Vytvořen</th>
+    <th>Akce</th>
+  </tr>
+  <% users.forEach(u => { %>
+  <tr>
+    <td><%= u.id %></td>
+    <td><strong><%= u.username %></strong></td>
+    <td><%= u.display_name || '—' %></td>
+    <td><%= u.created_at ? u.created_at.split(' ')[0] : '—' %></td>
+    <td>
+      <% if (users.length > 1) { %>
+        <form method="post" action="/admin/users/<%= u.id %>/delete" style="display:inline" onsubmit="return confirm('Opravdu smazat uživatele?')">
+          <button type="submit" class="action-link action-delete" style="background:none;border:none;cursor:pointer;font:inherit">Smazat</button>
+        </form>
+      <% } else { %>
+        <span style="color:#aaa;font-size:0.85rem">—</span>
+      <% } %>
+    </td>
+  </tr>
+  <% }) %>
+</table>
+
+<h3 style="margin-bottom:16px;font-family:'Source Sans 3',sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;color:#555;letter-spacing:1px">Přidat nového admina</h3>
+
+<form method="post" action="/admin/users" class="admin-form">
+  <div class="form-group">
+    <label>Jméno:</label>
+    <input type="text" name="username" required>
+  </div>
+  <div class="form-group">
+    <label>Heslo:</label>
+    <input type="password" name="password" required>
+  </div>
+  <div class="form-group">
+    <label>Zobrazované jméno:</label>
+    <input type="text" name="display_name">
+  </div>
+  <div class="form-actions">
+    <button type="submit" class="btn btn-green">Přidat</button>
+  </div>
+</form>
+
+<%- include('footer') %>

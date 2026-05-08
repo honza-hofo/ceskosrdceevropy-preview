@@ -1,0 +1,44 @@
+<%- include('partials/head', { pageTitle: categoryName, pageDesc: 'Články v sekci ' + categoryName }) %>
+<%- include('partials/header', { activeCategory: categoryName }) %>
+
+    <div class="container">
+        <div class="category-header">
+            <span class="category-badge-large badge-<%= categoryName.toLowerCase() %>"><%= categoryName %></span>
+            <h1><%= categoryName %></h1>
+            <p>Všechny články v sekci <%= categoryName %></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-layout">
+            <main>
+                <% if (articles.length === 0) { %>
+                    <p style="text-align:center;padding:40px;color:#888;">V této sekci zatím nejsou žádné články.</p>
+                <% } else { %>
+                <div class="article-grid">
+                    <% articles.forEach(a => { %>
+                    <article class="article-card">
+                        <a href="/clanek/<%= a.slug %>"><img src="<%= a.featured_image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800&h=450&fit=crop' %>" alt="<%= a.title %>" loading="lazy"></a>
+                        <div class="content">
+                            <span class="badge badge-<%= a.category.toLowerCase() %>"><%= a.category %></span>
+                            <h3><a href="/clanek/<%= a.slug %>"><%= a.title %></a></h3>
+                            <p class="excerpt"><%= a.perex %></p>
+                            <div class="meta">
+                                <span class="author"><%= a.author || 'Redakce' %></span>
+                                <span class="sep">|</span>
+                                <span><%= a.published_at || '' %></span>
+                            </div>
+                        </div>
+                    </article>
+                    <% }) %>
+                </div>
+
+                <%- include('partials/pagination', { currentPage, totalPages, baseUrl: '/kategorie/' + encodeURIComponent(categoryName.toLowerCase()) + '?' }) %>
+                <% } %>
+            </main>
+
+            <%- include('partials/sidebar') %>
+        </div>
+    </div>
+
+<%- include('partials/footer') %>

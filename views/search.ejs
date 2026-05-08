@@ -1,0 +1,47 @@
+<%- include('partials/head', { pageTitle: 'Hledání: ' + query }) %>
+<%- include('partials/header') %>
+
+    <div class="container">
+        <div class="search-header">
+            <h1>Výsledky hledání</h1>
+            <p>
+                <% if (articles.length > 0) { %>
+                    Nalezeno <strong><%= total %></strong> výsledků pro „<strong><%= query %></strong>"
+                <% } else { %>
+                    Pro „<strong><%= query %></strong>" nebyly nalezeny žádné výsledky.
+                <% } %>
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-layout">
+            <main>
+                <% if (articles.length > 0) { %>
+                <div class="article-grid">
+                    <% articles.forEach(a => { %>
+                    <article class="article-card">
+                        <a href="/clanek/<%= a.slug %>"><img src="<%= a.featured_image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=800&h=450&fit=crop' %>" alt="<%= a.title %>" loading="lazy"></a>
+                        <div class="content">
+                            <span class="badge badge-<%= a.category.toLowerCase() %>"><%= a.category %></span>
+                            <h3><a href="/clanek/<%= a.slug %>"><%= a.title %></a></h3>
+                            <p class="excerpt"><%= a.perex %></p>
+                            <div class="meta">
+                                <span class="author"><%= a.author || 'Redakce' %></span>
+                                <span class="sep">|</span>
+                                <span><%= a.published_at || '' %></span>
+                            </div>
+                        </div>
+                    </article>
+                    <% }) %>
+                </div>
+
+                <%- include('partials/pagination', { currentPage, totalPages, baseUrl: '/hledat?q=' + encodeURIComponent(query) + '&' }) %>
+                <% } %>
+            </main>
+
+            <%- include('partials/sidebar') %>
+        </div>
+    </div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,63 @@
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h5>O nás</h5>
+                    <p>Česko srdce Evropy je nezávislý magazín přinášející příběhy o české vědě, technologiích, kultuře a společnosti.</p>
+                </div>
+                <div>
+                    <h5>Sekce</h5>
+                    <ul>
+                        <li><a href="/kategorie/rozhovory">Rozhovory</a></li>
+                        <li><a href="/kategorie/věda">Věda</a></li>
+                        <li><a href="/kategorie/tech">Tech</a></li>
+                        <li><a href="/kategorie/paragrafy">Paragrafy</a></li>
+                        <li><a href="/kategorie/art">Art</a></li>
+                        <li><a href="/kategorie/ocenění">Ocenění</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5>Kontakt</h5>
+                    <p>IČ: 23244216<br><br>Odpovědná osoba: Zuzana Žáčková<br><a href="mailto:redakce@ceskesrdceevropy.cz">redakce@ceskesrdceevropy.cz</a></p>
+                </div>
+                <div>
+                    <h5>Sociální sítě</h5>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <% if (typeof partners !== 'undefined' && partners.length) { %>
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;margin-top:20px;margin-bottom:20px;">
+                <h5 style="text-align:center;margin-bottom:16px;font-size:12px;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.5);">Partneri</h5>
+                <div style="display:flex;gap:24px;justify-content:center;align-items:center;flex-wrap:wrap;">
+                    <% partners.forEach(p => { %>
+                        <a href="<%= p.link_url || '#' %>" target="_blank" style="text-decoration:none;color:#fff;opacity:0.7;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7">
+                            <% if (p.logo_url) { %>
+                                <img src="<%= p.logo_url %>" alt="<%= p.name %>" style="height:32px;max-width:120px;object-fit:contain;filter:brightness(0) invert(1);">
+                            <% } else { %>
+                                <span style="font-weight:600;font-size:14px;"><%= p.name %></span>
+                            <% } %>
+                        </a>
+                    <% }) %>
+                </div>
+            </div>
+            <% } %>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Česko srdce Evropy. Všechna práva vyhrazena.</span>
+                <span>Vytvořeno ve spolupráci s <a href="https://hofo.cz" style="color:#fff;">HOFO Production</a> &nbsp;|&nbsp; <a href="#">Cookies</a> &nbsp;|&nbsp; <a href="#">Ochrana soukromí</a></span>
+            </div>
+        </div>
+    </footer>
+    <div class="cookie-banner" id="cookieBanner">
+        <span>Tento web používá cookies pro zlepšení uživatelského zážitku a analýzu návštěvnosti.</span>
+        <div style="display:flex;gap:8px;flex-shrink:0;">
+            <button class="cookie-settings" onclick="alert('Nastavení cookies')">Nastavení</button>
+            <button class="cookie-accept" onclick="document.getElementById('cookieBanner').classList.add('hidden')">Přijmout vše</button>
+        </div>
+    </div>
+</body>
+</html>

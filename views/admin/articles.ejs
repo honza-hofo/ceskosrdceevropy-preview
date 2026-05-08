@@ -1,0 +1,49 @@
+<%- include('layout', { admin, page: 'articles' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/articles">Články</a> <span>»</span> Přehled
+</div>
+
+<div class="filter-bar">
+  <a href="/admin/articles/new" class="btn btn-green btn-sm">+ Nový článek</a>
+  <form method="get" action="/admin/articles">
+    <select name="category" onchange="this.form.submit()">
+      <option value="">Vše</option>
+      <% categories.forEach(c => { %>
+        <option value="<%= c %>" <%= selectedCategory === c ? 'selected' : '' %>><%= c %></option>
+      <% }) %>
+    </select>
+  </form>
+</div>
+
+<table class="admin-table">
+  <tr>
+    <th>Datum</th>
+    <th>Název</th>
+    <th>Kategorie</th>
+    <th>Stav</th>
+    <th>Akce</th>
+  </tr>
+  <% if (articles.length === 0) { %>
+    <tr><td colspan="5" style="text-align:center;padding:24px;color:#888;">Žádné články</td></tr>
+  <% } %>
+  <% articles.forEach(a => { %>
+  <tr>
+    <td><%= a.published_at || '—' %></td>
+    <td><%= a.title %></td>
+    <td><span class="cat-badge cat-<%= a.category %>"><%= a.category %></span></td>
+    <td><%= a.is_published ? '✅' : '📝' %></td>
+    <td>
+      <a href="/admin/articles/<%= a.id %>/preview" class="action-link action-preview" target="_blank">Náhled</a>
+      <span class="action-sep">|</span>
+      <a href="/admin/articles/<%= a.id %>" class="action-link action-edit">Upravit</a>
+      <span class="action-sep">|</span>
+      <form method="post" action="/admin/articles/<%= a.id %>/delete" style="display:inline" onsubmit="return confirm('Opravdu smazat?')">
+        <button type="submit" class="action-link action-delete" style="background:none;border:none;cursor:pointer;font:inherit">Smazat</button>
+      </form>
+    </td>
+  </tr>
+  <% }) %>
+</table>
+
+<%- include('footer') %>

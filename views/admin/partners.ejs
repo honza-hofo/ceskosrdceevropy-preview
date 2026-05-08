@@ -1,0 +1,79 @@
+<%- include('layout', { admin, page: 'partners' }) %>
+
+<div class="breadcrumb">
+  <a href="/admin/partners">Partneri</a> <span>&raquo;</span> Sprava partneru
+</div>
+
+<% if (typeof saved !== 'undefined' && saved) { %>
+  <div class="msg-success">Partneri byli ulozeni.</div>
+<% } %>
+
+<form method="post" action="/admin/partners" class="admin-form">
+
+  <p style="color:#666;margin-bottom:16px;">Partneri se zobrazuji ve footeru webu. Pridejte nazev, logo a odkaz.</p>
+
+  <div id="partners-list">
+    <% if (partners && partners.length) { %>
+      <% partners.forEach((p, i) => { %>
+        <div class="partner-item" style="border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;background:#fafafa;">
+          <div style="display:flex;gap:12px;align-items:center;">
+            <% if (p.logo_url) { %>
+              <img src="<%= p.logo_url %>" style="width:60px;height:40px;object-fit:contain;border-radius:4px;background:#fff;padding:4px;border:1px solid #eee;">
+            <% } %>
+            <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+              <div>
+                <label style="font-size:11px;color:#888;">Nazev:</label>
+                <input type="text" name="name" value="<%= p.name %>" placeholder="Nazev partnera">
+              </div>
+              <div>
+                <label style="font-size:11px;color:#888;">Logo URL:</label>
+                <input type="text" name="logo_url" value="<%= p.logo_url || '' %>" placeholder="https://...logo.png">
+              </div>
+              <div>
+                <label style="font-size:11px;color:#888;">Odkaz:</label>
+                <input type="text" name="link_url" value="<%= p.link_url || '' %>" placeholder="https://...">
+              </div>
+            </div>
+            <button type="button" onclick="this.closest('.partner-item').remove()" style="color:#e33;background:none;border:none;cursor:pointer;font-size:18px;">&times;</button>
+          </div>
+        </div>
+      <% }) %>
+    <% } %>
+  </div>
+
+  <button type="button" onclick="addPartner()" class="btn" style="margin-bottom:20px;">+ Pridat partnera</button>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-green">Ulozit partnery</button>
+  </div>
+</form>
+
+<script>
+function addPartner() {
+  const div = document.createElement('div');
+  div.className = 'partner-item';
+  div.style = 'border:1px solid #ddd;border-radius:8px;padding:16px;margin-bottom:12px;background:#fafafa;';
+  div.innerHTML = `
+    <div style="display:flex;gap:12px;align-items:center;">
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+        <div>
+          <label style="font-size:11px;color:#888;">Nazev:</label>
+          <input type="text" name="name" value="" placeholder="Nazev partnera">
+        </div>
+        <div>
+          <label style="font-size:11px;color:#888;">Logo URL:</label>
+          <input type="text" name="logo_url" value="" placeholder="https://...logo.png">
+        </div>
+        <div>
+          <label style="font-size:11px;color:#888;">Odkaz:</label>
+          <input type="text" name="link_url" value="" placeholder="https://...">
+        </div>
+      </div>
+      <button type="button" onclick="this.closest('.partner-item').remove()" style="color:#e33;background:none;border:none;cursor:pointer;font-size:18px;">&times;</button>
+    </div>
+  `;
+  document.getElementById('partners-list').appendChild(div);
+}
+</script>
+
+<%- include('footer') %>

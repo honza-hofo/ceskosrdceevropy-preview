@@ -1,0 +1,54 @@
+<%- include('partials/head', { pageTitle: article.title, pageDesc: article.perex }) %>
+<%- include('partials/header', { activeCategory: article.category }) %>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Domů</a> <span>›</span> <a href="/kategorie/<%= article.category.toLowerCase() %>"><%= article.category %></a> <span>›</span> <%= article.title %>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page-layout">
+            <main>
+                <% if (article.featured_image) { %>
+                <div class="article-hero">
+                    <img src="<%= article.featured_image %>" alt="<%= article.title %>">
+                </div>
+                <% } %>
+
+                <span class="badge badge-<%= article.category.toLowerCase() %>"><%= article.category %></span>
+                <h1 class="article-title"><%= article.title %></h1>
+
+                <div class="article-meta">
+                    <div>
+                        <div class="author-name"><%= article.author || 'Redakce' %></div>
+                        <div><%= article.published_at || '' %></div>
+                    </div>
+                </div>
+
+                <div class="article-body">
+                    <%- article.content %>
+                </div>
+
+                <% if (related && related.length) { %>
+                <div class="section-heading">Další články</div>
+                <div class="related-grid">
+                    <% related.forEach(r => { %>
+                    <article class="related-card">
+                        <a href="/clanek/<%= r.slug %>"><img src="<%= r.featured_image || 'https://images.unsplash.com/photo-1504711434969-e33886168d6c?w=400&h=200&fit=crop' %>" alt="<%= r.title %>" loading="lazy"></a>
+                        <div class="content">
+                            <span class="badge badge-<%= r.category.toLowerCase() %>" style="font-size:0.65rem;padding:3px 8px;"><%= r.category %></span>
+                            <h3><a href="/clanek/<%= r.slug %>"><%= r.title %></a></h3>
+                            <div class="meta"><%= r.published_at || '' %></div>
+                        </div>
+                    </article>
+                    <% }) %>
+                </div>
+                <% } %>
+            </main>
+
+            <%- include('partials/sidebar') %>
+        </div>
+    </div>
+
+<%- include('partials/footer') %>
